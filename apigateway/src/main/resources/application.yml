@@ -1,0 +1,33 @@
+server:
+  port: 8081 # Port for API Gateway
+
+
+
+spring:
+  application:
+    name: apigateway # Service name for Eureka Discovery
+
+    main:
+      web-application-type:reactive
+
+  cloud:
+    gateway:
+      routes:
+        # Example route to UserService
+        - id: user-service
+          uri: lb://UserService # 'lb://' means load-balanced via Eureka
+          predicates:
+            - Path=/api/users/** # Match all requests with this path
+
+        # Example route to ProductService
+        - id: product-service
+          uri: lb://productservice
+          predicates:
+            - Path=/api/products/**
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ # Eureka server URL

@@ -1,0 +1,13 @@
+server:
+  port: 8761 # Port for Eureka Server
+
+spring:
+  application:
+    name: discoveryserver # Name of the Eureka Server application
+
+eureka:
+  client:
+    register-with-eureka: false # This server will not register itself to Eureka
+    fetch-registry: false       # This server will not fetch the registry from other servers
+  server:
+    wait-time-in-ms-when-sync-empty: 0 # No wait at startup
